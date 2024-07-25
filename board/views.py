@@ -10,11 +10,17 @@ def signupfunc(request):
         password2=request.POST['password']
         try:
             User.objects.get(username=username2)
-            return render(request,'board/signup.html',{'error':'このユーザーはすでに使用されています'})
+            return render(request,'signup.html',{'error':'このユーザーはすでに使用されています'})
         except:
             user = User.objects.create_user(username2, "", password2)
-            return render(request, 'board/signup.html', {'some':100})
-    return render(request, 'board/signup.html', {'some':100})
+            return render(request, 'signup.html', {'some':100})
+    return render(request, 'signup.html', {'some':100})
+
+
+@login_required
+def listfunc(request):
+    post_list=Post.objects.all()
+    return render(request,'list.html',{'post_list':post_list})
 
 def loginfunc(request):
     if request.method=='POST':
@@ -23,16 +29,9 @@ def loginfunc(request):
         user = authenticate(request,username=username2, password=password2)
         if user is not None:
             login(request,user)
-            return render(request,'board/signup.html')
+            return redirect('signup')
         else:
-            return render(request,'board/login.html')
-    return render(request,'board/login.html')
+            return redirect('login')
+    return render(request,'login.html')
 
-@login_required
-def listfunc(request):
-    post_list=Post.objects.all()
-    return render(request,'board/list.html',{'post_list':post_list})
-
-           
-            
     
