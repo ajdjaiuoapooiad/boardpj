@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from .models import Post
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.decorators import login_required
 
 def signupfunc(request):
     if request.method=='POST':
@@ -27,6 +28,7 @@ def loginfunc(request):
             return render(request,'board/login.html')
     return render(request,'board/login.html')
 
+@login_required
 def listfunc(request):
     post_list=Post.objects.all()
     return render(request,'board/list.html',{'post_list':post_list})
