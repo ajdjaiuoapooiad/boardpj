@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% load static %}
+{% block customcss %}
+{% endblock customcss %}
 
 
 {% block content %}
@@ -16,6 +17,7 @@
         <a href="" class="btn btn-secondary">Link</a>
     </div>
     {%endfor%}
+    <a href="">ログアウト</a>
 </div>
 
 {% endblock content %}

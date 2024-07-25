@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from .models import Post
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 
 def signupfunc(request):
@@ -33,5 +33,10 @@ def loginfunc(request):
 def listfunc(request):
     post_list=Post.objects.all()
     return render(request,'list.html',{'post_list':post_list})
+
+def logoutfunc(request):
+    logout(request)
+    return redirect('login')
+   
 
     
