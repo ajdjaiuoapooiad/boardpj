@@ -17,11 +17,6 @@ def signupfunc(request):
     return render(request, 'signup.html', {'some':100})
 
 
-@login_required
-def listfunc(request):
-    post_list=Post.objects.all()
-    return render(request,'list.html',{'post_list':post_list})
-
 def loginfunc(request):
     if request.method=='POST':
         username2=request.POST['username']
@@ -29,9 +24,14 @@ def loginfunc(request):
         user = authenticate(request,username=username2, password=password2)
         if user is not None:
             login(request,user)
-            return redirect('signup')
+            return redirect('list')
         else:
             return redirect('login')
     return render(request,'login.html')
+
+@login_required
+def listfunc(request):
+    post_list=Post.objects.all()
+    return render(request,'list.html',{'post_list':post_list})
 
     
