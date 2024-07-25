@@ -25,6 +25,10 @@ def loginfunc(request):
         else:
             return render(request,'board/login.html')
     return render(request,'board/login.html')
-                
+
+def listfunc(request):
+    return render(request,'board/list.html')
+
+           
             
     
