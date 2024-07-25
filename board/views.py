@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
+from .models import Post
 from django.contrib.auth import authenticate,login
 
 def signupfunc(request):
@@ -27,7 +28,8 @@ def loginfunc(request):
     return render(request,'board/login.html')
 
 def listfunc(request):
-    return render(request,'board/list.html')
+    post_list=Post.objects.all()
+    return render(request,'board/list.html',{'post_list':post_list})
 
            
             
