@@ -21,9 +21,9 @@ def loginfunc(request):
         user = authenticate(request,username=username2, password=password2)
         if user is not None:
             login(request,user)
-            return redirect('signup')
+            return render(request,'board/signup.html')
         else:
-            return redirect('login')
+            return render(request,'board/login.html')
     return render(request,'board/login.html')
                 
             
