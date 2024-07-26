@@ -7,7 +7,7 @@ class Post(models.Model):
     image=models.ImageField(upload_to='media/images')
     good=models.IntegerField('いいね')
     read=models.IntegerField('既読')
-    read_text=models.CharField(max_length=200)
+    read_text=models.CharField(max_length=200) #userの名前と紐づく
     
     def __str__(self):
         return self.title
